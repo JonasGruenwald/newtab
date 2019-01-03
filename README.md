@@ -2,6 +2,19 @@
 
 A new tab page
 
+## About
+
+This extension will display bookmarks and a simple notepad on a web-extension compatible browsers new tab page.
+
+I built this for my specific use case of showing different bookmarks based on switchable contexts (work & play).
+
+To add bookmarks to show in the work context, add them to a folder called `__work__bookmarks`, to show them in the play context, add them to a folder called `__play__bookmarks`.
+
+Current context and notepad contents are persisted in localstorage.
+
+
+![Screenshot](screenshot.png)
+
 ## Install
 
 	$ npm install
@@ -23,7 +36,3 @@ A new tab page
 ## Environment
 
 The build tool also defines a variable named `process.env.NODE_ENV` in your scripts. 
-
-## Docs
-
-* [webextension-toolbox](https://github.com/HaNdTriX/webextension-toolbox)
