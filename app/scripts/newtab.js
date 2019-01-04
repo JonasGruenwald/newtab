@@ -20,6 +20,19 @@ class PageManager {
     this.render()
   }
 
+  restorePinned(folderId) {
+    browser.bookmarks.getSubTree(folderId)
+      .then(pinned => {
+        pinned[0].children.forEach(child => {
+          browser.tabs.create({
+            url: child.url,
+            pinned: true
+          })
+        })
+      })
+
+  }
+
   switchContext(context) {
     this.context = context;
     localStorage.setItem('context', JSON.stringify(context));
@@ -27,7 +40,6 @@ class PageManager {
   }
 
   updateNotebook(e) {
-    console.log(e)
     localStorage.setItem('notepad', e.target.value)
   }
 
@@ -63,10 +75,17 @@ class PageManager {
         bookmarks[0].children.forEach((bookmark) => {
           const el = document.createElement('div');
           el.classList.add('bookmark');
-          el.innerText = bookmark.title;
-          el.onclick = function () {
-            window.location = bookmark.url
-          };
+          if (bookmark.title === '__pinned') {
+            el.innerText = '📌 Pinned Tabs'
+            el.onclick = () => {
+              this.restorePinned(bookmark.id)
+            }
+          } else {
+            el.innerText = bookmark.title;
+            el.onclick = function () {
+              window.location = bookmark.url
+            };
+          }
           this.bookmarksContainer.appendChild(el)
         })
       })

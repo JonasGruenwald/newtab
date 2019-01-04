@@ -1,7 +1,7 @@
 {
   "name": "newtab",
-  "version": "0.0.1",
-  "description": "A ",
+  "version": "1.0.1",
+  "description": "A simple new tab page",
   "scripts": {
     "dev": "webextension-toolbox dev",
     "build": "webextension-toolbox build"
