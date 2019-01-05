@@ -40,7 +40,7 @@ class PageManager {
   }
 
   updateNotebook(e) {
-    localStorage.setItem('notepad', e.target.value)
+    localStorage.setItem(`notepad_${this.context.id}`, e.target.value)
   }
 
   render() {
@@ -76,7 +76,7 @@ class PageManager {
           const el = document.createElement('div');
           el.classList.add('bookmark');
           if (bookmark.title === '__pinned') {
-            el.innerText = '📌 Pinned Tabs'
+            el.innerText = `📌 ${bookmark.children.length} Pinned Tabs`;
             el.onclick = () => {
               this.restorePinned(bookmark.id)
             }
@@ -91,7 +91,8 @@ class PageManager {
       })
 
     // Add notepad text & click handler
-    this.notepad.innerText = localStorage.getItem('notepad')
+    const storedText = localStorage.getItem(`notepad_${this.context.id}`);
+    if (storedText) this.notepad.innerText = storedText;
     this.notepad.addEventListener('input', debounce(this.updateNotebook, 250))
   }
 }
