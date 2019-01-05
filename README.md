@@ -17,6 +17,8 @@ Current context and notepad contents are persisted in localstorage.
 
 ![Screenshot](screenshot.png)
 
+ASCII art used as placeholder notepad content is from http://ascii.co.uk/art/apollo
+
 ## Install
 
 
