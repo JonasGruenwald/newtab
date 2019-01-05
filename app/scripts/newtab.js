@@ -92,8 +92,8 @@ class PageManager {
 
     // Add notepad text & click handler
     const storedText = localStorage.getItem(`notepad_${this.context.id}`);
-    if (storedText) this.notepad.innerText = storedText;
-    this.notepad.addEventListener('input', debounce(this.updateNotebook, 250))
+    if (storedText) this.notepad.value = storedText;
+    this.notepad.addEventListener('input', debounce(this.updateNotebook.bind(this), 250))
   }
 }
 
